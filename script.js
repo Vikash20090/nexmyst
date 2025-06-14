@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---- WALLET STATE ----
-  let walletAmount = 200;
+  let walletAmount = 300;
   let totalWinnings = 0;
   let totalBoxes = 0;
 
