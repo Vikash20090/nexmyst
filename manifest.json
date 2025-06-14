@@ -5,3 +5,20 @@
     "type": "image/png"
   }
 ]
+
+{
+  "name": "NexMyst",
+  "short_name": "NexMyst",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00fff7",
+  "icons": [
+    {
+      "src": "nexmyst-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+
