@@ -93,11 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
             shakeElement(loginError);
           }
         } catch (err) {
-          loginError.textContent = "Server से connect नहीं हो पाया!";
+          loginError.textContent = "not connected to server!";
           shakeElement(loginError);
         }
       } else {
-        loginError.textContent = "Username और Password दोनों भरें!";
+        loginError.textContent = "FILL USERNAME AND PASSWORD BOTH!";
         shakeElement(loginError);
       }
     });
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---- WALLET STATE ----
-  let walletAmount = 5100;
+  let walletAmount = 200;
   let totalWinnings = 0;
   let totalBoxes = 0;
 
