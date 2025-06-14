@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mystery Box</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!-- Login/Register Form -->
+<div id="login-page" class="login-container">
+  <div class="login-card">
+    <h2>Login / Register</h2>
+    <input type="text" id="login-username" placeholder="Username" autocomplete="username" />
+    <input type="password" id="login-password" placeholder="Password" autocomplete="current-password" />
+    <button id="login-btn" type="button">Login</button>
+    <button id="register-btn" type="button" class="register-btn">Register</button>
+    <div id="login-error" class="login-error"></div>
+  </div>
+</div>
+
+  <!-- Mystery Box Game Page (hidden by default) -->
+
+
+  
+
+
+
+
+
+  <div id="game-page" style="display:none;">
+    <div id="winning-message" class="hidden"></div>
+    <div class="game-container">
+      <h1 class="title">MYSTERY BOX</h1>
+      <div class="boxes">
+        <div class="box">
+          <img src="box1.png" class="box-img" />
+          <div class="reward-anim hidden"></div>
+        </div>
+        <div class="box">
+          <img src="box2.png" class="box-img" />
+          <div class="reward-anim hidden"></div>
+        </div>
+        <div class="box">
+          <img src="box3.png" class="box-img" />
+          <div class="reward-anim hidden"></div>
+        </div>
+      </div>
+
+
+      
+      <!-- Stylish Bet Amount Input -->
+      <div class="bet-amount-ui">
+        <label for="bet-amount" class="bet-label">💸 Bet Amount:</label>
+        <div class="bet-input-wrap">
+          <input type="range" id="bet-slider" min="10" max="5000" value="10" step="1" />
+          <input type="number" id="bet-amount" min="10" max="5000" value="10" />
+          <span class="bet-currency">₹</span>
+        </div>
+      </div>
+
+      <button class="open-btn">OPEN NOW</button>
+    </div>
+
+    <!-- Account Button -->
+    <button id="account-btn" class="account-btn" title="Account">
+      <span>👤</span>
+    </button>
+
+    
+
+
+
+
+<!-- WALLET PANEL (COMPACT & PREMIUM) -->
+<div id="wallet-ui" class="wallet-ui-premium">
+  <div class="wallet-premium-card">
+    <div class="wallet-main-amt">
+      <span class="wal-ic">💰</span>
+      <span class="wal-amt" id="wallet-amount">5100</span>
+      <span class="wal-curr">₹</span>
+    </div>
+    <div class="wal-mini-list">
+      <div class="wal-mini" title="Total Winnings"><span>🏆</span> <span id="total-winnings">0</span></div>
+      <div class="wal-mini" title="Boxes Opened"><span>🎁</span> <span id="total-boxes">0</span></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  <!-- Settings Page -->
+  <div id="settings-page" class="settings-container" style="display:none;">
+    <div class="settings-card">
+      <div class="settings-header">
+        <div class="settings-dp">
+          <img id="user-dp" src="https://randomuser.me/api/portraits/men/32.jpg" alt="DP" />
+          <input type="file" id="change-dp" accept="image/*" style="display:none;">
+          <button class="change-dp-btn" onclick="document.getElementById('change-dp').click()">Change DP</button>
+        </div>
+        <div class="settings-userinfo">
+          <div class="settings-uid">UID: <span id="user-uid">#123456</span></div>
+          <div class="settings-nick">Nickname: <span id="user-nick">DemoUser</span></div>
+        </div>
+      </div>
+      <div class="settings-actions">
+        <button id="deposit-btn">💰 Deposit</button>
+        <button id="withdraw-btn">🏦 Withdraw</button>
+        <button id="forgot-btn">🔑 Forgot Password</button>
+        <button id="custcare-btn">📞 Customer Care</button>
+        <button id="logout-btn">🚪 Logout</button>
+      </div>
+      <button class="settings-close-btn" id="settings-close-btn" title="Close">✖ Close</button>
+    </div>
+  </div>
+
+  <!-- Account Page -->
+  <div id="account-page" class="account-container" style="display:none;">
+    <div class="account-card">
+      <h2>👤 Account</h2>
+      <div class="account-list">
+        <button id="trans-btn">💸 Transactions</button>
+        <button id="history-btn">🎮 Game History</button>
+        <button id="notif-btn">🔔 Notifications</button>
+        <button id="lang-btn">🌐 Language</button>
+        <button id="feedback-btn">✉️ Feedback</button>
+        <button id="about-btn">ℹ️ About Us</button>
+        <button id="close-account-btn" class="close-account-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Icon -->
+  <button id="settings-icon" class="settings-icon-btn" title="Settings">
+    <span>⚙️</span>
+  </button>
+
+  <!-- Deposit & Withdraw Buttons -->
+<button id="deposit-btn" class="action-btn-3d">💸 Deposit</button>
+<button id="withdraw-btn" class="action-btn-3d">🏦 Withdraw</button>
+
+<!-- Deposit Modal -->
+<div id="deposit-modal" class="pay-modal-3d hidden">
+  <div class="pay-card-3d">
+    <button class="pay-close-btn-3d" id="deposit-close-btn" title="Close">✖</button>
+    <h2>Deposit Funds</h2>
+    <div class="pay-form">
+      <input id="deposit-amount" type="number" min="10" max="10000" value="100" placeholder="Amount (₹10-₹10000)" />
+      <button id="deposit-pay-btn" class="pay-main-btn-3d">Add Money</button>
+      <div id="deposit-anim" class="pay-anim-area"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Withdraw Modal -->
+<div id="withdraw-modal" class="pay-modal-3d hidden">
+  <div class="pay-card-3d">
+    <button class="pay-close-btn-3d" id="withdraw-close-btn" title="Close">✖</button>
+    <h2>Withdraw Funds</h2>
+    <div class="pay-form">
+      <input id="withdraw-amount" type="number" min="50" max="10000" value="100" placeholder="Amount (₹50-₹10000)" />
+      <input id="withdraw-upi" type="text" placeholder="Your UPI ID" maxlength="60" />
+      <button id="withdraw-pay-btn" class="pay-main-btn-3d">Withdraw</button>
+      <div id="withdraw-anim" class="pay-anim-area"></div>
+    </div>
+  </div>
+</div>
+  
+<!-- Terms & Conditions Button & Modal -->
+<button id="terms-btn" class="terms-btn-3d">📜 Terms & Conditions</button>
+<div id="terms-modal" class="terms-modal-3d hidden">
+  <div class="terms-card-3d">
+    <button class="terms-close-btn-3d" id="terms-close-btn" title="Close">✖</button>
+    <h2 class="terms-title-3d">Terms & Conditions</h2>
+    <div class="terms-content-3d">
+      <ol>
+        <li><b>Age Restriction:</b> Only users aged 18 years or older can use this app.</li>
+        <li><b>Personal Responsibility:</b> You are solely responsible for your actions and gameplay.</li>
+        <li><b>High-Risk Game:</b> This is a luck-based, high-risk mystery box app.</li>
+        <li><b>Real Money:</b> All deposits, bets, and winnings use real money.</li>
+        <li><b>No Guarantee:</b> There is no guarantee of winning or profit at any time.</li>
+        <li><b>No Refunds:</b> All payments and bets are final and non-refundable under any circumstance.</li>
+        <li><b>Random Outcomes:</b> All rewards are determined randomly by the system algorithm.</li>
+        <li><b>Account Security:</b> Keep your login details and password confidential.</li>
+        <li><b>Single Account:</b> Only one account per user is allowed. Duplicate accounts may be suspended.</li>
+        <li><b>Prohibited Activities:</b> Any fraudulent activity will result in permanent account ban.</li>
+        <li><b>Device Responsibility:</b> You are responsible for keeping your device secure.</li>
+        <li><b>Fair Play:</b> Any attempt to manipulate or exploit the game will lead to legal action and permanent ban.</li>
+        <li><b>Game Addiction:</b> Play responsibly. If you feel addicted, please stop playing and seek help.</li>
+        <li><b>Financial Risk:</b> Playing this game involves risk of losing your entire deposit.</li>
+        <li><b>Funds Withdrawal:</b> Withdrawals are only processed according to the app's withdrawal policy.</li>
+        <li><b>Verification:</b> You may be required to complete KYC or identity verification for withdrawals.</li>
+        <li><b>Taxes:</b> All applicable taxes must be borne by the user. The app is not responsible for your tax liabilities.</li>
+        <li><b>Dispute Resolution:</b> All disputes are subject to the jurisdiction of the company's registered location.</li>
+        <li><b>Bonus Policy:</b> Bonuses may be added as per promotions, and can be changed or revoked without notice.</li>
+        <li><b>Inactive Accounts:</b> Accounts inactive for 180 days may be closed and remaining balances forfeited.</li>
+        <li><b>Data Privacy:</b> User data is protected as per our Privacy Policy. We do not sell your data.</li>
+        <li><b>Third-Party Integrations:</b> The app may use third-party payment providers and is not responsible for their service failures.</li>
+        <li><b>Maintenance:</b> The app may be unavailable due to maintenance without prior notice.</li>
+        <li><b>App Updates:</b> Features, rules, and terms can be updated at any time without notice.</li>
+        <li><b>Prohibited Jurisdictions:</b> Users from jurisdictions where online gaming is illegal are not allowed.</li>
+        <li><b>Account Suspension:</b> The app can suspend or terminate your account for any policy violation.</li>
+        <li><b>Intellectual Property:</b> All app content, design, and code is the property of the company.</li>
+        <li><b>Responsible Gaming:</b> Set your own limits. Don't play with money you can't afford to lose.</li>
+        <li><b>No Liability:</b> The company is not liable for any losses, damages, or addiction caused by the app.</li>
+        <li><b>Service Availability:</b> App functionality may change or discontinue at any time.</li>
+        <li><b>Communication:</b> The app may send you transactional and promotional notifications.</li>
+        <li><b>Withdrawal Limits:</b> Minimum and maximum withdrawal limits apply as per policy.</li>
+        <li><b>Deposit Limits:</b> Deposit limits may be set for responsible gaming.</li>
+        <li><b>Transaction Delays:</b> The company is not responsible for banking/payment delays.</li>
+        <li><b>Referral Policy:</b> Referral bonuses are subject to fair use and may be revoked.</li>
+        <li><b>Promotions:</b> Promotional offers may have separate terms and can be withdrawn anytime.</li>
+        <li><b>Account Closure:</b> You can request account closure by contacting customer care.</li>
+        <li><b>Technical Issues:</b> The app is not responsible for losses due to technical errors or connectivity issues.</li>
+        <li><b>Legal Compliance:</b> Users must comply with all local laws regarding online gaming and payments.</li>
+        <li><b>Account Balance:</b> Always check your balance before playing; errors after gameplay cannot be rectified.</li>
+        <li><b>Game Results:</b> Game results are final and binding once published in the app.</li>
+        <li><b>Payment Methods:</b> Only authorized payment methods may be used for deposits and withdrawals.</li>
+        <li><b>Chargebacks:</b> Chargebacks are not permitted and may result in account suspension.</li>
+        <li><b>Bonus Abuse:</b> Bonus abuse or fraudulent use will lead to forfeiture and ban.</li>
+        <li><b>Complaint Policy:</b> All complaints must be raised within 7 days of the incident.</li>
+        <li><b>Withdrawal Time:</b> Withdrawals may take up to 7 business days to process.</li>
+        <li><b>User Support:</b> Support is available as per the timings provided in the app.</li>
+        <li><b>Policy Acceptance:</b> By using the app, you accept all these terms and conditions.</li>
+        <li><b>Policy Changes:</b> The company reserves the right to change these terms at any time.</li>
+        <li><b>Severability:</b> If any term is found invalid, it does not affect the rest of the terms.</li>
+        <li><b>Contact:</b> For any queries, contact support through the app or at the provided email/phone.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- Refund Policy Button & Modal -->
+<button id="refund-btn" class="refund-btn-3d">💸 Refund Policy</button>
+<div id="refund-modal" class="refund-modal-3d hidden">
+  <div class="refund-card-3d">
+    <button class="refund-close-btn-3d" id="refund-close-btn" title="Close">✖</button>
+    <h2 class="refund-title-3d">Refund Policy</h2>
+    <div class="refund-content-3d">
+      <ol>
+        <li><b>No Refunds:</b> All deposits, bets, and payments in this app are final and non-refundable.</li>
+        <li><b>Irrevocable Transactions:</b> Once a transaction is completed, it cannot be reversed or refunded.</li>
+        <li><b>User Mistakes:</b> Refunds are not provided for user errors, such as wrong amount input.</li>
+        <li><b>Technical Issues:</b> Refunds are not provided for technical errors, network issues, or downtime.</li>
+        <li><b>Payment Provider Failures:</b> The app is not responsible for failures by third-party payment providers.</li>
+        <li><b>Game Outcomes:</b> Refunds are not given for losing in the game or dissatisfaction with game outcomes.</li>
+        <li><b>Fraudulent Activity:</b> Suspected fraud or abuse will result in permanent ban without refund.</li>
+        <li><b>No Partial Refunds:</b> Partial refunds are not possible under any circumstances.</li>
+        <li><b>Bonus Money:</b> Bonus funds and promotional credits are not refundable or withdrawable as cash.</li>
+        <li><b>Chargebacks Prohibited:</b> Attempting chargebacks will lead to account suspension and loss of funds.</li>
+        <li><b>Duplicate Payments:</b> Duplicate payments identified will be credited as wallet balance, not refunded.</li>
+        <li><b>Processing Errors:</b> If your account is incorrectly charged, contact support within 24 hours.</li>
+        <li><b>Refund Eligibility:</b> Only proven technical errors reported within 24 hours are eligible for review.</li>
+        <li><b>Withdrawal Issues:</b> Withdrawal delays due to incorrect info are not refundable.</li>
+        <li><b>KYC Requirement:</b> Refunds are not processed unless KYC is completed if required.</li>
+        <li><b>Currency Fluctuations:</b> No refunds for changes in wallet value due to currency changes.</li>
+        <li><b>Minimum Refund:</b> The company may set a minimum amount for processing any eligible refund.</li>
+        <li><b>Refund Fees:</b> Refunds, if any, may be subject to transaction fees.</li>
+        <li><b>Refund Time:</b> If a refund is approved, it may take up to 15 business days to process.</li>
+        <li><b>Bonus Abuse:</b> Refunds are not given for accounts found abusing bonus or referral programs.</li>
+        <li><b>Lost Access:</b> Loss of access due to forgotten credentials is not eligible for refund.</li>
+        <li><b>Account Closure:</b> Refunds are not provided for voluntary account closure by user.</li>
+        <li><b>Inactive Accounts:</b> Balances in inactive accounts may be forfeited without refund.</li>
+        <li><b>Policy Violation:</b> Refunds are not given for users found violating any app policy.</li>
+        <li><b>Disputed Transactions:</b> Raise disputes within 24 hours; later requests are not entertained.</li>
+        <li><b>App Maintenance:</b> Refunds are not given for downtime due to scheduled maintenance.</li>
+        <li><b>Force Majeure:</b> No refunds for losses due to events beyond company's control.</li>
+        <li><b>Withdrawal Cancellations:</b> Cancelled withdrawals are returned to wallet, not refunded to bank.</li>
+        <li><b>Transfer Errors:</b> Company is not responsible for errors in third-party transfers.</li>
+        <li><b>Bank Delays:</b> Refunds are not issued for bank-side delays.</li>
+        <li><b>Promotional Offers:</b> Unused or expired offers and bonuses are not refundable.</li>
+        <li><b>Account Review:</b> Refund processing may be held until account review is complete.</li>
+        <li><b>Account Suspension:</b> Suspended accounts for policy violation forfeit all balances, no refund.</li>
+        <li><b>Legal Requirement:</b> Refunds will only be processed if legally mandated by competent authority.</li>
+        <li><b>Support Contact:</b> Contact support with full details for any refund request review.</li>
+        <li><b>Transaction Proof:</b> Proof of transaction is required for any refund consideration.</li>
+        <li><b>One-Time Refund:</b> If granted, a refund is one-time only and not a precedent for future cases.</li>
+        <li><b>Wallet Balance:</b> Refunds are not given for unused wallet balance.</li>
+        <li><b>Non-Transferable:</b> Refunds, if any, will only be returned to the original payment source.</li>
+        <li><b>User Cooperation:</b> User must cooperate in investigation for refund eligibility.</li>
+        <li><b>Refund Denial:</b> The company reserves the right to deny refund for any suspicious activity.</li>
+        <li><b>Taxes:</b> Any taxes deducted during transaction are not refundable.</li>
+        <li><b>Jurisdiction:</b> Disputes regarding refunds are subject to the company’s jurisdiction only.</li>
+        <li><b>Policy Updates:</b> Refund policy can be changed at any time without notice.</li>
+        <li><b>App Rights:</b> The company’s decision regarding refunds is final and binding.</li>
+        <li><b>Communication:</b> All refund communications will be sent to your registered email/phone only.</li>
+        <li><b>Language:</b> Refund policy is available in English; translations are for convenience only.</li>
+        <li><b>Acceptance:</b> By using the app, you agree to this refund policy in full.</li>
+        <li><b>Severability:</b> If any term is invalid, remaining terms remain in effect.</li>
+        <li><b>Contact:</b> For any queries, contact customer support with full details.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+  <script src="script.js"></script>
+</body>
+</html>
