@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
 
+  
 <link rel="manifest" href="manifest.json" />
-<link rel="icon" href="nexmyst-icon.png" />
-<meta name="theme-color" content="#121212" />
+<meta name="theme-color" content="#00ffcc" />
+
+
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -299,21 +301,29 @@
     </div>
   </div>
 </div>
-  <script src="script.js"></script>
 
-
+<!-- ... आपके बाकी का HTML कोड ... -->
 
 <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(reg => console.log('✅ Service Worker registered', reg))
-        .catch(err => console.error('❌ SW registration failed', err));
-    });
-  }
+  // Show/Hide Terms Modal
+  document.getElementById("terms-btn").addEventListener("click", function () {
+    document.getElementById("terms-modal").classList.remove("hidden");
+  });
+  document.getElementById("terms-close-btn").addEventListener("click", function () {
+    document.getElementById("terms-modal").classList.add("hidden");
+  });
+
+  // Show/Hide Refund Modal
+  document.getElementById("refund-btn").addEventListener("click", function () {
+    document.getElementById("refund-modal").classList.remove("hidden");
+  });
+  document.getElementById("refund-close-btn").addEventListener("click", function () {
+    document.getElementById("refund-modal").classList.add("hidden");
+  });
 </script>
 
 
-    
+
+  <script src="script.js"></script>
 </body>
 </html>
