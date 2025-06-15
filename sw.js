@@ -1,21 +1,24 @@
-self.addEventListener('install', e => {
+self.addEventListener('install', function(e) {
   e.waitUntil(
-    caches.open('nexmyst-cache').then(cache => {
+    caches.open('mystery-box-cache').then(function(cache) {
       return cache.addAll([
         '/',
-        '/index.html',
-        '/style.css',
-        '/script.js',
-        '/sounds/click.wav',
-        '/nexmyst-icon.png'
+        'index.html',
+        'style.css',
+        'main.js',
+        'manifest.json',
+        'sounds/click.wav',
+        'sounds/open.mp3',
+        'icon-192.png',
+        'icon-512.png'
       ]);
     })
   );
 });
 
-self.addEventListener('fetch', e => {
+self.addEventListener('fetch', function(e) {
   e.respondWith(
-    caches.match(e.request).then(response => {
+    caches.match(e.request).then(function(response) {
       return response || fetch(e.request);
     })
   );
