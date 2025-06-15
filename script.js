@@ -93,11 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
             shakeElement(loginError);
           }
         } catch (err) {
-          loginError.textContent = "not connected to server!";
+          loginError.textContent = "Server से connect नहीं हो पाया!";
           shakeElement(loginError);
         }
       } else {
-        loginError.textContent = "FILL USERNAME AND PASSWORD BOTH!";
+        loginError.textContent = "Username और Password दोनों भरें!";
         shakeElement(loginError);
       }
     });
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---- WALLET STATE ----
-  let walletAmount = 300;
+  let walletAmount = 5100;
   let totalWinnings = 0;
   let totalBoxes = 0;
 
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     boxOpening = true;
     playSound('sounds/open.mp3');
     if (walletAmount < selectedAmount) {
-      showWinningMessage('❌ wallet money is to low!', walletAmount);
+      showWinningMessage('❌ वॉलेट में पैसे कम हैं!', walletAmount);
       shakeElement(document.querySelector('.bet-amount-ui'));
       boxOpening = false;
       return;
@@ -269,16 +269,16 @@ document.addEventListener('DOMContentLoaded', () => {
       msgDiv.innerHTML = `<span style="color:#ff8080;">${reward}</span>`;
       showToast('Insufficient Balance!');
     } else if (reward === 0) {
-      msgDiv.innerHTML = `<span style="color:#ff8080;">😔 Better luck next time!</span><br><span style="font-size:1.1rem;opacity:0.8;">WALLET BALNCE: ₹${walletAmount}</span>`;
+      msgDiv.innerHTML = `<span style="color:#ff8080;">😔 Better luck next time!</span><br><span style="font-size:1.1rem;opacity:0.8;">वॉलेट बैलेंस: ₹${walletAmount}</span>`;
       showToast('Try Again!');
     } else if (reward >= selectedAmount * 10) {
-      msgDiv.innerHTML = `💎 <span style="color:#00fff7;font-size:2.2rem;">SUPER JACKPOT!</span> 💎<br>YOU <span style="color:#ffff00;">₹${reward}</span> WON!<br><span style="font-size:1.1rem;opacity:0.8;">Wallet: ₹${walletAmount}</span>`;
+      msgDiv.innerHTML = `💎 <span style="color:#00fff7;font-size:2.2rem;">SUPER JACKPOT!</span> 💎<br>आपने <span style="color:#ffff00;">₹${reward}</span> जीता!<br><span style="font-size:1.1rem;opacity:0.8;">Wallet: ₹${walletAmount}</span>`;
       showToast('💎 SUPER JACKPOT! +₹' + reward);
     } else if (reward >= selectedAmount * 2) {
-      msgDiv.innerHTML = `🎉 <span style="color:#00ffcc;">RARE WIN!</span> 🎉<br>YOU<span style="color:#ffff00;">₹${reward}</span> GIVES!<br><span style="font-size:1.1rem;opacity:0.8;">Wallet: ₹${walletAmount}</span>`;
+      msgDiv.innerHTML = `🎉 <span style="color:#00ffcc;">RARE WIN!</span> 🎉<br>आपको <span style="color:#ffff00;">₹${reward}</span> मिला!<br><span style="font-size:1.1rem;opacity:0.8;">Wallet: ₹${walletAmount}</span>`;
       showToast('RARE WIN! +₹' + reward);
     } else {
-      msgDiv.innerHTML = `🎁 आपको <span style="color:#ffff00;">₹${reward}</span> का इनाम मिला!<br><span style="font-size:1.1rem;opacity:0.8;">NOW WALLET: ₹${walletAmount}</span>`;
+      msgDiv.innerHTML = `🎁 आपको <span style="color:#ffff00;">₹${reward}</span> का इनाम मिला!<br><span style="font-size:1.1rem;opacity:0.8;">अब वॉलेट: ₹${walletAmount}</span>`;
       showToast('Congratulations! You Won ₹' + reward);
     }
     msgDiv.classList.remove('hidden');
@@ -606,3 +606,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 });
+document.querySelectorAll('.terms-modal-3d, .refund-modal-3d, .pay-modal-3d').forEach(modal => {
+  modal.addEventListener('click', function(e) {
+    if (e.target === this) this.classList.add('hidden');
+  });
+});
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(function(registration) {
+        console.log('✅ ServiceWorker registration successful');
+      }, function(err) {
+        console.log('❌ ServiceWorker registration failed:', err);
+      });
+  });
+}
