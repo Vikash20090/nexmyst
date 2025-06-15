@@ -1,7 +1,7 @@
 {
-  "name": "Mystery Box Game",
-  "short_name": "MysteryBox",
-  "start_url": "index.html",
+  "name": "NexMyst",
+  "short_name": "Mystery Box",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#00ffcc",
