@@ -27,3 +27,8 @@ self.addEventListener('fetch', function(e) {
 self.addEventListener('install', e => console.log('SW installed'));
 self.addEventListener('activate', e => console.log('SW activated'));
 
+
+
+self.addEventListener('install', () => console.log('SW installed'));
+self.addEventListener('activate', () => console.log('SW activated'));
+self.addEventListener('fetch', () => {});
