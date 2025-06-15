@@ -1374,3 +1374,14 @@ body {
   border-radius: 20px;
   box-shadow: 0 0 30px rgba(0,0,0,0.6);
 }
+
+.hidden {
+  display: none;
+}
+.coin {
+  width: 40px;
+  height: 40px;
+  background-image: url('coin.png');
+  background-size: cover;
+  animation: spinCoin 1s linear infinite;
+}
