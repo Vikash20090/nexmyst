@@ -636,3 +636,14 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event) {
   console.log('Fetching:', event.request.url);
 });
+
+
+firebase.firestore().enablePersistence()
+  .catch((err) => {
+    if (err.code == 'failed-precondition') {
+      console.log("Multiple tabs open, offline persistence can’t be enabled.");
+    } else if (err.code == 'unimplemented') {
+      console.log("The current browser does not support offline persistence");
+    }
+  });
+
