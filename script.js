@@ -623,27 +623,13 @@ if ('serviceWorker' in navigator) {
 }
 
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(reg => console.log("✅ Service Worker Registered"))
-      .catch(err => console.log("❌ SW Error:", err));
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(function (registration) {
+        console.log('✅ ServiceWorker registration successful');
+      })
+      .catch(function (error) {
+        console.log('❌ ServiceWorker registration failed:', error);
+      });
   });
 }
-
-self.addEventListener('install', function(event) {
-  console.log('Service Worker installing.');
-});
-self.addEventListener('fetch', function(event) {
-  console.log('Fetching:', event.request.url);
-});
-
-
-firebase.firestore().enablePersistence()
-  .catch((err) => {
-    if (err.code == 'failed-precondition') {
-      console.log("Multiple tabs open, offline persistence can’t be enabled.");
-    } else if (err.code == 'unimplemented') {
-      console.log("The current browser does not support offline persistence");
-    }
-  });
-
